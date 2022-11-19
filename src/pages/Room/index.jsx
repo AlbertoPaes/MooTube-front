@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams,useNavigate } from "react-router-dom";
+
 import Logo from "../../assets/MooTube.png";
 import { Wrapper, Header,WrapperRoomContainer,RoomContainer } from "./style";
+
 import { getRoom } from '../../services/api';
+
+import  {VideoPlayer} from "../../components/room/VideoPlayer";
 
 const Room = () => {
   const [room,setRoom] = useState(null);
@@ -31,7 +35,8 @@ const Room = () => {
       </Header>
       <WrapperRoomContainer>
         <RoomContainer>
-          <span>shdhashdashudhu</span>
+          <VideoPlayer />
+          <span>asudhauhhdusa</span>
         </RoomContainer>
       </WrapperRoomContainer>
     </Wrapper>
