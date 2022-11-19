@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="readme-logo/MooTube.png" width="50%">
+    <img src="./readme-logo/MooTube.png" width="50%">
 </p>
 
 MooTube is a web application under development (a little inspired by <b>[Watch2Gether](https://www.watch2gether.com/)</b>) for users wanting to watch the same videos . At the end of the project, the goal is for users to also be able to chat while watching a YouTube video, as well as add videos to a playlist to save their favorite videos.
