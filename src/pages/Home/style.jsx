@@ -67,7 +67,7 @@ const Title = styled.p`
   }
 `
 
-const EntryContainer = styled.div(({ disableButton }) => `
+const EntryContainer = styled.div`
   min-height: 100vh;
   width: 37.16%;
 
@@ -79,40 +79,18 @@ const EntryContainer = styled.div(({ disableButton }) => `
   
   background-color: #333333;
   
-  /* input {
-    height: 85px;
-    width: 80%;
-    background-color: #FFFFFF;
-    color: #151515;
-    
-    font-family: 'Oswald';
-    font-weight: 700;
-    font-size: 27px;
-    line-height: 40px;
-    
-    padding-left: 17px;
-    border: none;
-    border-radius: 6px;
-    &::placeholder {
-      color: #9F9F9F;
-    }
-    &::disabled {
-      background-color: #F2F2F2;
-      color: #AFAFAF;
-    }
-  } */
   button {
     height: 65px;
     width: 80%;
-    background-color: ${disableButton ? "#888" : "#1877F2"};
-    opacity: ${disableButton ? 0.7 : 1};
-    color: #FFFFFF;
+
+    background-color: #1877F2;
+    color: rgb(218, 218, 218);
     
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-family: 'Oswald';
-    font-style: normal;
     font-weight: 700;
     font-size: 27px;
     line-height: 40px;
@@ -120,8 +98,16 @@ const EntryContainer = styled.div(({ disableButton }) => `
     border-radius: 6px;
     border: none;
     
-    cursor: ${disableButton ? 'not-allowed' : 'pointer'};
-    pointer-events: ${disableButton ? 'none' : 'auto'};
+    cursor: pointer;
+    text-decoration: none;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-property: color, background-color, box-shadow;
+    user-select: none;
+
+    &:hover {
+      color: #FFFFFF;
+    }
   }
 
   @media (max-width: 800px){
@@ -132,19 +118,13 @@ const EntryContainer = styled.div(({ disableButton }) => `
     justify-content: start;
     padding-top: 40px;
 
-    /* input {
-      width: 90%;
-      height: 55px;
-      font-size: 22px;
-    } */
-
     button {
       width: 90%;
       height: 55px;
       font-size: 22px;
     }
   }
-`);
+`;
 
 export {
   Wrapper,

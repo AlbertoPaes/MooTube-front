@@ -1,8 +1,10 @@
-
+import { useParams } from "react-router-dom";
 
 const Room = () => {
+  const { roomName } = useParams();
+
   return (
-    <h1>Minha linda página Room</h1>
+    <h1>Minha linda página de Room</h1>
   );
 }
 

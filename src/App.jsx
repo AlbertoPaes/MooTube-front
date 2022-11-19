@@ -4,15 +4,18 @@ import Home from "./pages/Home";
 import Room from "./pages/Room";
 
 import GlobalStyle from "./style/GlobalStyle";
+import { DataProvider } from "./contexts/data";
 
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/rooms" element={<Room />} />
-      </Routes>
+      <DataProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/rooms/:roomName" element={<Room />} />
+        </Routes>
+      </DataProvider>
       <GlobalStyle />
     </Router>
   );
