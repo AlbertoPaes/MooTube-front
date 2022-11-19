@@ -1,50 +1,73 @@
-import { useState } from "react";
-import { useContext } from 'react';
-import { DataContext } from "../contexts/data";
+import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 
-const Overlay = ({setHidden,overlayType}) => {
-  const [roomName, setRoomName] = useState("");
-  const [displayName, setDisplayName] = useState("");
+import { makeRoom } from '../services/api';
 
-  const { joinRoom, createRoom } = useContext(DataContext);
+const OverlayForm = ({setHidden,overlayType}) => {
+  const navigate = useNavigate();
+  const { handleSubmit, register } = useForm();
 
-  const roomData = {
-    roomName: roomName,
-    displayName: displayName
+  const handleJoinRoom = async (data) => {
+    try {
+      // await getRoom(roomData.roomName);
+      navigate(`/rooms/${data.roomName}`);
+    } catch {
+      alert("There was an error in the data, please fill it in again!");
+    }
   }
 
-  const handleJoinRoom = (roomData) => {
-    joinRoom(roomData);
-  }
-
-  const handleCreateRoom = (roomData) => {
-    createRoom(roomData);
-  }
-
-  const handleForm = (e) => {
-    e.preventDefault();
+  const handleCreateRoom = async (data) => {
+    try {
+      // await makeRoom(data.roomName);
+      navigate(`/rooms/${data.roomName}`);
+    } catch {
+      alert("Something went wrong and your room was not created, please fill it in again!");
+    }
   }
 
   return (
     <ScreenOverlay>
       <Screen>  
           <span>{overlayType === 'watch' ? 'Watch Room' : 'Create Room'}</span>
-          <CloseWindow onClick={() => setHidden(true)}> X </CloseWindow>
+          <CloseWindow onClick={() => setHidden(true)}>X</CloseWindow>
           <div className='separator-horizontal-line'></div>
-          <form onSubmit={handleForm}>
-            <input type="text" value={roomName} onChange={(e) => setRoomName(e.target.value)} placeholder="Room Name" required />
-            <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="Display Name" required />
+          <form name="landing" onSubmit={ overlayType === 'watch' ? handleSubmit(handleJoinRoom) : handleSubmit(handleCreateRoom)}>
+            <input
+              placeholder="Room Name" 
+              { 
+              ...register(
+                'roomName',
+                { 
+                required: "The field must have a maximum of 20 characters", 
+                maxLength: 20 
+                }) 
+              }
+            />
+
+            <input  
+              placeholder="Username" 
+              { 
+              ...register(
+                'username',
+                { 
+                required:"The field must have a maximum of 12 characters", 
+                maxLength: 12 
+                }) 
+              } 
+            />
+
+            <div className="container-button">
+              <button className="button-submit cancel" onClick={() => setHidden(true)}>Cancel</button>
+              {
+                overlayType === 'watch'
+                ? <button type="submit" className="button-submit join-or-create">Join
+                </button>
+                : <button type="submit" className="button-submit join-or-create">Create
+                </button>          
+              }
+            </div>
           </form>
-          <div className='separator-horizontal-line'></div>
-          <div className="container-button">
-            <button className="button-submit cancel" onClick={() => setHidden(true)}>Cancel</button>
-            {
-              overlayType === 'watch'
-              ? <button className="button-submit join-or-create" onClick={() => handleJoinRoom(roomData)}>Join</button>
-              : <button className="button-submit join-or-create" onClick={() => handleCreateRoom(roomData)}>Create</button>          
-            }
-          </div>
       </Screen>
     </ScreenOverlay>
   );
@@ -120,6 +143,7 @@ const Screen = styled.div`
   }
 
   .container-button {
+    width: 95%;
     display: flex;
     justify-content: space-between;
     margin: 30px 20px;
@@ -167,4 +191,4 @@ const CloseWindow = styled.button`
   top: 25.75px;
 `
 
-export default Overlay;
+export default OverlayForm;

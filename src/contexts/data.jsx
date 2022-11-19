@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { makeRoom } from "../services/api";
+import { makeRoom,getRoom } from "../services/api";
 
 export const DataContext = createContext();
 
@@ -10,6 +10,7 @@ export const DataProvider = ( {children} ) => {
 
   const joinRoom = async (roomData) => {
     try {
+      // await getRoom(roomData.roomName);
       navigate(`/rooms/${roomData.roomName}`);
     } catch {
       alert("There was an error in the data, please fill it in again!");
