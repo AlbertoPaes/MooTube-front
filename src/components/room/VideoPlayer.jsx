@@ -11,6 +11,8 @@ export const VideoPlayer = () => {
         <ReactPlayer className='react-player'>
           url={url}
           backgroundColor: 'black'
+          muted={true}
+          playing={true}
           config={{
             youtube: {
               playerVars: { showinfo: 0 },

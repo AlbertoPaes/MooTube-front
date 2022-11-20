@@ -56,14 +56,40 @@ const RoomContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  margin: 0 auto;   
+`;
 
-  background-color: rosybrown;
+const WrapperTabs = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  .separator-horizontal-line {
+    border: 1px solid #9f1b1b;
+    margin: 20px 20px;
+  } 
+`
+
+const Tabs = styled.div`
+  width: 40%;
+  height: 360px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+  gap: 30px;
+`
+
+const Tab = styled.span`
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
 `;
 
 export {
   Wrapper,
   Header,
   WrapperRoomContainer,
-  RoomContainer
+  RoomContainer,
+  Tabs,
+  Tab,
+  WrapperTabs
 }
